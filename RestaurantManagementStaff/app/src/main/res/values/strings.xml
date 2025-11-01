@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">RestaurantManagementStaff</string>
+
+    <!-- Login Screen -->
+    <string name="staff_user">Staff/User</string>
+    <string name="login">login</string>
+    <string name="email_address">Email address:</string>
+    <string name="password">Password:</string>
+    <string name="login_button">Login</string>
+    <string name="register_link">Don\'t have an account? Register</string>
+
+    <!-- Register Screen -->
+    <string name="register">Register</string>
+    <string name="name">Name:</string>
+    <string name="retype_password">Retype password:</string>
+    <string name="register_button">Register</string>
+
+    <!-- Dashboard Screen -->
+    <string name="dashboard">Dashboard</string>
+    <string name="items_to_reorder">Items to reorder</string>
+    <string name="upcoming_reservations">Upcoming Reservations</string>
+    <string name="daily_revenue">Daily Revenue</string>
+    <string name="order_status">Order Status</string>
+    <string name="view_all">View All</string>
+    <string name="order_id">OrderID</string>
+    <string name="time">Time</string>
+    <string name="status">Status</string>
+    <string name="price">Price</string>
+
+    <!-- New Order Screen -->
+    <string name="new_order">New Order</string>
+    <string name="order_type">Order Type</string>
+    <string name="dine_in">Dine In</string>
+    <string name="take_away">Take Away</string>
+    <string name="table">Table</string>
+    <string name="order_items">Order Items</string>
+    <string name="record_added">1 record added</string>
+    <string name="submit">Submit</string>
+
+    <!-- Menu Items -->
+    <string name="menu_item_dessert">Menu Item (Dessert)</string>
+    <string name="menu_item_main">Menu Item (Main)</string>
+
+    <!-- Reservations -->
+    <string name="reservations">Reservations</string>
+    <string name="birthday">Birthday</string>
+    <string name="tables">Tables</string>
+    <string name="dinner">Dinner</string>
+    <string name="custom">Custom</string>
+</resources>
