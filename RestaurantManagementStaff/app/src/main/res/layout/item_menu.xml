@@ -1,48 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- res/layout/item_menu.xml -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardBackgroundColor="@color/card_gray"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="0dp">
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/surface_dark"
+    app:cardCornerRadius="12dp"
+    app:strokeColor="@color/stroke_color"
+    app:strokeWidth="1dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical">
+        android:padding="16dp">
 
-        <!-- Image Placeholder -->
         <ImageView
-            android:id="@+id/ivMenuItem"
+            android:id="@+id/imageViewItem"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/bg_image_placeholder"
+            android:background="@drawable/bg_card"
             android:scaleType="centerCrop"
-            android:contentDescription="Menu Item Image" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="Menu Item Image"/>
 
-        <!-- Text Container -->
-        <LinearLayout
+        <TextView
+            android:id="@+id/textViewItemName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="16dp"
-            android:orientation="vertical">
+            android:text="Item Name (e.g., Lasagna)"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageViewItem"
+            app:layout_constraintTop_toTopOf="@id/imageViewItem" />
 
-            <TextView
-                android:id="@+id/tvMenuItemName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Menu Item (Dessert)"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textViewItemDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="Item Description or Category"
+            android:textColor="@color/text_secondary_dark"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageViewItem"
+            app:layout_constraintTop_toBottomOf="@id/textViewItemName" />
 
-        </LinearLayout>
-
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

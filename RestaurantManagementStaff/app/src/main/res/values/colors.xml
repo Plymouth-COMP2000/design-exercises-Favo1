@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Main Colors -->
-    <color name="background_dark">@color/purple_200</color>
-    <color name="white">#FFFFFF</color>
+    <!-- Primary Theme Colors -->
+    <color name="colorPrimary">#00A79D</color> <!-- A vibrant Teal -->
+    <color name="colorPrimaryDark">#00796B</color> <!-- A darker shade for status bars -->
+    <color name="colorAccent">#FFC107</color> <!-- A warm accent for highlights -->
 
-    <!-- Gray Shades -->
-    <color name="card_gray">#808080</color>
-    <color name="button_gray">#757575</color>
-    <color name="icon_gray">#9E9E9E</color>
-    <color name="input_gray">#757575</color>
+    <!-- Dark Theme UI Colors -->
+    <color name="background_dark">#121212</color> <!-- Main app background -->
+    <color name="surface_dark">#1E1E1E</color> <!-- Card and component backgrounds -->
+    <color name="surface_dark_light">#2A2A2A</color> <!-- Lighter surface for emphasis -->
+    <color name="stroke_color">#404040</color> <!-- Border/stroke color for elements -->
 
     <!-- Text Colors -->
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#B0B0B0</color>
-    <color name="text_hint">#666666</color>
+    <color name="text_primary_dark">#E0E0E0</color> <!-- Main text color -->
+    <color name="text_secondary_dark">#A0A0A0</color> <!-- Subtitles and helper text -->
 
-    <!-- Material Design Colors (for compatibility) -->
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <!-- Standard Colors -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Status Colors -->
+    <color name="status_confirmed">#4CAF50</color> <!-- Green -->
+    <color name="status_new_order">#FF9800</color> <!-- Orange -->
+    <color name="status_payment_pending">#2196F3</color> <!-- Blue -->
 </resources>

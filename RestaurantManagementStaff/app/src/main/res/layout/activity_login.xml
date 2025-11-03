@@ -1,119 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/activity_login.xml -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark"
+    android:padding="24dp"
     tools:context=".LoginActivity">
 
-    <!-- Header Tabs -->
-    <LinearLayout
-        android:id="@+id/headerTabs"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textViewLoginTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:text="Staff/User Login"
+        android:textColor="@color/text_primary_dark"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="60dp"/>
 
-        <TextView
-            android:id="@+id/tvStaffUser"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Staff/User"
-            android:textColor="@color/text_secondary"
-            android:textSize="16sp" />
+    <TextView
+        android:id="@+id/textViewEmailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Email address:"
+        android:textColor="@color/text_secondary_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewLoginTitle" />
 
-        <TextView
-            android:id="@+id/tvLogin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="login"
-            android:textAlignment="textEnd"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <!-- Login Form Container -->
-    <LinearLayout
+    <EditText
+        android:id="@+id/editTextEmail"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_edit_text"
+        android:hint="you@example.com"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColor="@color/text_primary_dark"
+        android:textColorHint="@color/text_secondary_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerTabs"
-        app:layout_constraintVertical_bias="0.2">
+        app:layout_constraintTop_toBottomOf="@id/textViewEmailLabel" />
 
-        <!-- Email Address Field -->
+    <TextView
+        android:id="@+id/textViewPasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Password:"
+        android:textColor="@color/text_secondary_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextEmail" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_edit_text"
+        android:hint="••••••••"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="@color/text_primary_dark"
+        android:textColorHint="@color/text_secondary_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPasswordLabel" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_button_primary"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonLogin">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email address:"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:text="Don't have an account? "
+            android:textColor="@color/text_secondary_dark" />
 
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_input_field"
-            android:hint=""
-            android:inputType="textEmailAddress"
-            android:paddingHorizontal="16dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/text_hint" />
-
-        <!-- Password Field -->
         <TextView
+            android:id="@+id/textViewRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Password:"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_input_field"
-            android:hint=""
-            android:inputType="textPassword"
-            android:paddingHorizontal="16dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/text_hint" />
-
-        <!-- Login Button -->
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="@color/button_gray"
-            android:paddingHorizontal="40dp"
-            android:text="Login"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-        <!-- Register Link -->
-        <TextView
-            android:id="@+id/tvRegisterLink"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp"
-            android:text="Don't have an account? Register"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
+            android:text="Register"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
