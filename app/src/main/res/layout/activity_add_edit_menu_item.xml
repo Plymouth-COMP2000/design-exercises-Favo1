@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/background_dark"
+    tools:context="com.restaurant.app.AddEditMenuItemActivity">
+
+    <ImageView
+        android:id="@+id/imageViewMenuItem"
+        android:layout_width="52dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/menu_item_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSelectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/bg_button_primary"
+        android:text="@string/select_image"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewMenuItem" />
+
+    <EditText
+        android:id="@+id/editTextMenuItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/bg_edit_text"
+        android:hint="@string/item_name_e_g_lasagna"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textColor="@color/text_primary_dark"
+        android:textColorHint="@color/text_secondary_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonSelectImage" />
+
+    <EditText
+        android:id="@+id/editTextMenuItemPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:background="@drawable/bg_edit_text"
+        android:hint="@string/price"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:textColor="@color/text_primary_dark"
+        android:textColorHint="@color/text_secondary_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextMenuItemName" />
+
+    <Button
+        android:id="@+id/buttonSaveMenuItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_button_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
