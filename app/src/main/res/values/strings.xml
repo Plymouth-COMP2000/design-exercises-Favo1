@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">RestaurantManagement</string>
+
+    <!-- Login Screen -->
+    <string name="staff_user">Staff/User</string>
+    <string name="login">login</string>
+    <string name="email_address">Email address:</string>
+    <string name="password">Password:</string>
+    <string name="password_hint">••••••••</string>
+    <string name="login_button">Login</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+
+    <!-- Register Screen -->
+    <string name="register">Register</string>
+    <string name="register_title">Staff Registration</string>
+    <string name="username">Username:</string>
+    <string name="username_hint">Enter your username</string>
+    <string name="first_name">First Name:</string>
+    <string name="first_name_hint">Enter your first name</string>
+    <string name="last_name">Last Name:</string>
+    <string name="last_name_hint">Enter your last name</string>
+    <string name="email">Email:</string>
+    <string name="contact_number">Contact Number:</string>
+    <string name="contact_hint">Enter your contact number</string>
+    <string name="retype_password">Retype password:</string>
+    <string name="register_button">Register</string>
+    <string name="already_have_account">Already have an account?</string>
+
+    <!-- Dashboard Screen -->
+    <string name="dashboard">Dashboard</string>
+    <string name="items_to_reorder">Items to reorder</string>
+    <string name="upcoming_reservations">Upcoming Reservations</string>
+    <string name="daily_revenue">Daily Revenue</string>
+    <string name="order_status">Order Status</string>
+    <string name="view_all">View All</string>
+    <string name="order_id">OrderID</string>
+    <string name="time">Time</string>
+    <string name="status">Status</string>
+    <string name="price">Price</string>
+
+    <!-- New Order Screen -->
+    <string name="new_order">New Order</string>
+    <string name="order_type">Order Type</string>
+    <string name="dine_in">Dine In</string>
+    <string name="take_away">Take Away</string>
+    <string name="table">Table</string>
+    <string name="order_items">Order Items</string>
+    <string name="record_added">1 record added</string>
+    <string name="submit">Submit</string>
+
+    <!-- Menu Items -->
+    <string name="menu_item_dessert">Menu Item (Dessert)</string>
+    <string name="menu_item_main">Menu Item (Main)</string>
+    <string name="menu_item_image">Menu Item Image</string>
+    <string name="item_name_e_g_lasagna">Item Name (e.g., Lasagna)</string>
+    <string name="select_image">Select Image</string>
+    <string name="save">Save</string>
+
+    <!-- Reservations -->
+    <string name="reservations">Reservations</string>
+    <string name="birthday">Birthday</string>
+    <string name="tables">Tables</string>
+    <string name="dinner">Dinner</string>
+    <string name="custom">Custom</string>
+    <string name="item_description_or_category">Item Description or Category</string>
+    <string name="staff_user_login">Staff/User Login</string>
+    <string name="you_example_com">you@example.com</string>
+    <string name="occupied_tables">Occupied Tables</string>
+    <string name="menu">Menu</string>
+    <string name="table_number">Table %d</string>
+    <string name="item_count">%d Items</string>
+    <string name="order_confirmed">Order Confirmed</string>
+
+    <string name="customer_name">Customer Name</string>
+    <string name="date">Date</string>
+    <string name="number_of_guests">Number of Guests</string>
+    <string name="save_reservation">Save Reservation</string>
+    <string name="guests_x">Guests: X</string>
+    <string-array name="reservation_statuses">
+        <item>Pending</item>
+        <item>Confirmed</item>
+        <item>Cancelled</item>
+    </string-array>
+    <string name="app_slogan">Your Partner in Efficiency</string>
+
+        <!-- ... other existing strings ... -->
+    <!-- <string name="app_name">Restaurant Management</string> -->
+</resources>
