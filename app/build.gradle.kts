@@ -49,7 +49,7 @@ dependencies {
 
     // Room components
     implementation(libs.room.runtime.v261)
-    implementation(libs.room.compiler)
+    annotationProcessor(libs.room.compiler)
 
     // Glide for image loading
     implementation(libs.glide.v4130)

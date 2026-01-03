@@ -18,13 +18,16 @@ import java.util.List;
 public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ReservationHolder> {
     private List<Reservation> reservations;
     private OnItemClickListener listener;
+    private boolean isStaff;
 
-    public ReservationAdapter(List<Reservation> reservations) {
+    public ReservationAdapter(List<Reservation> reservations, boolean isStaff) {
         this.reservations = reservations;
+        this.isStaff = isStaff;
     }
 
     public interface OnItemClickListener {
         void onItemClick(Reservation reservation);
+        void onCancelClick(Reservation reservation);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

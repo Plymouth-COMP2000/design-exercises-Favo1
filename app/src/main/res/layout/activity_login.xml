@@ -59,21 +59,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etEmail" />
 
-    <EditText
-        android:id="@+id/etPassword"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/bg_edit_text"
-        android:hint="@string/password_hint"
-        android:inputType="textPassword"
-        android:padding="12dp"
-        android:textColor="@color/text_primary_dark"
-        android:textColorHint="@color/text_secondary_dark"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/text_secondary_dark"
+        app:boxBackgroundMode="none"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewPasswordLabel" />
+        app:layout_constraintTop_toBottomOf="@id/textViewPasswordLabel">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:textColor="@color/text_primary_dark"
+            android:textColorHint="@color/text_secondary_dark" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnLogin"

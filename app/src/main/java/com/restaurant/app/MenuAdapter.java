@@ -20,9 +20,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuItemHolder
 
     private List<MenuItem> menuItems;
     private OnItemClickListener listener;
+    private boolean isStaff;
 
-    public MenuAdapter(List<MenuItem> menuItems) {
+    public MenuAdapter(List<MenuItem> menuItems, boolean isStaff) {
         this.menuItems = menuItems;
+        this.isStaff = isStaff;
     }
 
     public interface OnItemClickListener {
@@ -66,17 +68,26 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuItemHolder
             }
         });
 
-        holder.imageViewEdit.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onEditClick(currentItem);
-            }
-        });
+        // Only show edit/delete buttons for staff
+        if (isStaff) {
+            holder.imageViewEdit.setVisibility(View.VISIBLE);
+            holder.imageViewDelete.setVisibility(View.VISIBLE);
+            
+            holder.imageViewEdit.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onEditClick(currentItem);
+                }
+            });
 
-        holder.imageViewDelete.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onDeleteClick(currentItem);
-            }
-        });
+            holder.imageViewDelete.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onDeleteClick(currentItem);
+                }
+            });
+        } else {
+            holder.imageViewEdit.setVisibility(View.GONE);
+            holder.imageViewDelete.setVisibility(View.GONE);
+        }
     }
 
     @Override

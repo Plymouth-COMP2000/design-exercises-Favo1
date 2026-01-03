@@ -25,6 +25,7 @@
     <string name="retype_password">Retype password:</string>
     <string name="register_button">Register</string>
     <string name="already_have_account">Already have an account?</string>
+    <string name="user_type">User Type:</string>
 
     <!-- Dashboard Screen -->
     <string name="dashboard">Dashboard</string>
@@ -80,6 +81,10 @@
         <item>Pending</item>
         <item>Confirmed</item>
         <item>Cancelled</item>
+    </string-array>
+    <string-array name="user_types">
+        <item>staff</item>
+        <item>guest</item>
     </string-array>
     <string name="app_slogan">Your Partner in Efficiency</string>
 

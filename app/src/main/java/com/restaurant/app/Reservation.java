@@ -12,6 +12,7 @@ public class Reservation {
     private String time;
     private int numberOfGuests;
     private String status; // e.g., Confirmed, Pending, Cancelled
+    private String createdBy; // Username of who created it
 
     public Reservation(String customerName, String date, String time, int numberOfGuests, String status) {
         this.customerName = customerName;
@@ -67,5 +68,13 @@ public class Reservation {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }

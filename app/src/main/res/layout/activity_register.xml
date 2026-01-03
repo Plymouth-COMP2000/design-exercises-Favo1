@@ -180,24 +180,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etContact" />
 
-    <EditText
-        android:id="@+id/etPassword"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:autofillHints="password"
-        android:background="@drawable/bg_edit_text"
-        android:hint="@string/password_hint"
-        android:textSize="10sp"
-        android:inputType="textPassword"
-        android:padding="12dp"
-        android:textColor="@color/text_primary_dark"
-        android:textColorHint="@color/text_secondary_dark"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/text_secondary_dark"
+        app:boxBackgroundMode="none"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewPasswordLabel"
-        tools:ignore="SmallSp" />
+        app:layout_constraintTop_toBottomOf="@id/textViewPasswordLabel">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:autofillHints="password"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/password_hint"
+            android:textSize="10sp"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:textColor="@color/text_primary_dark"
+            android:textColorHint="@color/text_secondary_dark"
+            tools:ignore="SmallSp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textViewRetypePasswordLabel"
@@ -208,25 +216,56 @@
         android:textSize="14sp"
         android:textColor="@color/text_secondary_dark"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etPassword" />
+        app:layout_constraintTop_toBottomOf="@id/passwordLayout" />
 
-    <EditText
-        android:id="@+id/etRetypePassword"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/retypePasswordLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/text_secondary_dark"
+        app:boxBackgroundMode="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewRetypePasswordLabel">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRetypePassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:autofillHints="password"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/password_hint"
+            android:textSize="10sp"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:textColor="@color/text_primary_dark"
+            android:textColorHint="@color/text_secondary_dark"
+            tools:ignore="SmallSp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textViewUserTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/user_type"
+        android:textSize="14sp"
+        android:textColor="@color/text_secondary_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/retypePasswordLayout" />
+
+    <Spinner
+        android:id="@+id/spinnerUserType"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
-        android:autofillHints="password"
         android:background="@drawable/bg_edit_text"
-        android:hint="@string/password_hint"
-        android:textSize="10sp"
-        android:inputType="textPassword"
         android:padding="12dp"
-        android:textColor="@color/text_primary_dark"
-        android:textColorHint="@color/text_secondary_dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewRetypePasswordLabel" />
+        app:layout_constraintTop_toBottomOf="@id/textViewUserTypeLabel" />
 
     <Button
         android:id="@+id/btnRegister"
@@ -242,7 +281,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etRetypePassword" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerUserType" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
