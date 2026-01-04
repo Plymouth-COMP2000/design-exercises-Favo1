@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Theme Colors -->
+    <color name="colorPrimary">#00A79D</color> <!-- A vibrant Teal -->
+    <color name="colorPrimaryDark">#00796B</color> <!-- A darker shade for status bars -->
+    <color name="colorAccent">#FFC107</color> <!-- A warm accent for highlights -->
+
+    <!-- Dark Theme UI Colors -->
+    <color name="background_dark">#121212</color> <!-- Main app background -->
+    <color name="surface_dark">#1E1E1E</color> <!-- Card and component backgrounds -->
+    <color name="surface">#1E1E1E</color>
+    <color name="surface_dark_light">#2A2A2A</color> <!-- Lighter surface for emphasis -->
+    <color name="stroke_color">#404040</color> <!-- Border/stroke color for elements -->
+
+    <!-- Text Colors -->
+    <color name="text_primary_dark">#E0E0E0</color> <!-- Main text color -->
+    <color name="text_secondary_dark">#A0A0A0</color> <!-- Subtitles and helper text -->
+    <color name="text_secondary">#A0A0A0</color>
+    <color name="text_hint">#999999</color>
+
+    <!-- Standard Colors -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Status Colors -->
+    <color name="status_confirmed">#4CAF50</color> <!-- Green -->
+    <color name="status_pending">#FF9800</color> <!-- Orange (reusing status_new_order) -->
+    <color name="status_cancelled">#F44336</color> <!-- Red -->
+    <color name="status_payment_pending">#2196F3</color> <!-- Blue -->
+
+    <color name="button_gray">#888888</color>
+</resources>

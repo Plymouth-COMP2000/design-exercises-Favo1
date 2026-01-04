@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="rvMenuItems" type="id" />
+    <item name="textViewRegisterTitle" type="id" />
+    <item name="textViewNameLabel" type="id" />
+    <item name="etName" type="id" />
+    <item name="textViewRetypePasswordLabel" type="id" />
+    <item name="etRetypePassword" type="id" />
+    <item name="btnRegister" type="id" />
+    <item name="linearLayout2" type="id" />
+    <item name="tvLoginLink" type="id" />
+</resources>
