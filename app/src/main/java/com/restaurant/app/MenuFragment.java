@@ -1,9 +1,11 @@
 package com.restaurant.app;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +38,7 @@ public class MenuFragment extends Fragment implements MenuAdapter.OnItemClickLis
     public static final int ADD_MENU_ITEM_REQUEST = 1;
     public static final int EDIT_MENU_ITEM_REQUEST = 2;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -75,6 +79,7 @@ public class MenuFragment extends Fragment implements MenuAdapter.OnItemClickLis
                 return false;
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public boolean onQueryTextChange(String newText) {
                 filterMenuItems(newText);
@@ -104,6 +109,7 @@ public class MenuFragment extends Fragment implements MenuAdapter.OnItemClickLis
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void filterMenuItems(String query) {
         if (query.isEmpty()) {
             menuAdapter.setMenuItems(allMenuItems);
@@ -143,6 +149,7 @@ public class MenuFragment extends Fragment implements MenuAdapter.OnItemClickLis
         }
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onItemClick(MenuItem menuItem) {
         if (userType.equals("staff")) {
