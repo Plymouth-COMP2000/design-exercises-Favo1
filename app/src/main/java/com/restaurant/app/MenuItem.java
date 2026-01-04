@@ -10,11 +10,17 @@ public class MenuItem {
     private String name;
     private double price;
     private String imagePath;
+    private int stockQuantity;
+    private boolean needsRestock;
+    private String restockNote;
 
     public MenuItem(String name, double price, String imagePath) {
         this.name = name;
         this.price = price;
         this.imagePath = imagePath;
+        this.stockQuantity = 50; // Default stock
+        this.needsRestock = false;
+        this.restockNote = "";
     }
 
     public int getId() {
@@ -47,5 +53,29 @@ public class MenuItem {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
+    public boolean isNeedsRestock() {
+        return needsRestock;
+    }
+
+    public void setNeedsRestock(boolean needsRestock) {
+        this.needsRestock = needsRestock;
+    }
+
+    public String getRestockNote() {
+        return restockNote;
+    }
+
+    public void setRestockNote(String restockNote) {
+        this.restockNote = restockNote;
     }
 }

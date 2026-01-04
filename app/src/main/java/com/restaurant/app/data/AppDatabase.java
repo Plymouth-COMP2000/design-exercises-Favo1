@@ -7,16 +7,20 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.restaurant.app.MenuItem;
+import com.restaurant.app.Order;
 import com.restaurant.app.Reservation;
+import com.restaurant.app.Table;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {MenuItem.class, Reservation.class}, version = 3, exportSchema = false)
+@Database(entities = {MenuItem.class, Reservation.class, Table.class, Order.class}, version = 7, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract MenuItemDao menuItemDao();
     public abstract ReservationDao reservationDao();
+    public abstract TableDao tableDao();
+    public abstract OrderDao orderDao();
 
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

@@ -5,12 +5,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.restaurant.app.data.SampleDataHelper;
 
 
 public class DashboardActivity extends AppCompatActivity {
@@ -28,11 +31,25 @@ public class DashboardActivity extends AppCompatActivity {
         userType = prefs.getString("usertype", "guest");
         userName = prefs.getString("username", "User");
 
-        // Set title based on user type
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(userType.equals("staff") ? "Staff Dashboard" : "Guest Dashboard");
-            getSupportActionBar().setSubtitle("Welcome, " + userName);
-        }
+        // Setup toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        
+        // Setup toolbar UI
+        TextView tvDashboardTitle = findViewById(R.id.tvDashboardTitle);
+        TextView tvUserWelcome = findViewById(R.id.tvUserWelcome);
+        ImageView ivUserProfile = findViewById(R.id.ivUserProfile);
+        
+        tvDashboardTitle.setText(userType.equals("staff") ? "Staff Dashboard" : "Guest Dashboard");
+        tvUserWelcome.setText("Welcome, " + userName);
+        
+        // Profile icon click - show menu with options
+        ivUserProfile.setOnClickListener(v -> {
+            showProfileMenu();
+        });
+
+        // Add sample menu items on first launch
+        SampleDataHelper.addSampleMenuItems(this);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnItemSelectedListener(navListener);
@@ -45,33 +62,50 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.dashboard_menu, menu);
-        
-        // Show statistics only for staff
-        MenuItem statsItem = menu.findItem(R.id.action_statistics);
-        if (statsItem != null) {
-            statsItem.setVisible(userType.equals("staff"));
-        }
-        
+        // No 3-dot menu needed - using profile icon instead
         return true;
+    }
+
+    private void showProfileMenu() {
+        // Build menu items based on user type
+        String[] menuItems;
+        if (userType.equals("staff")) {
+            menuItems = new String[]{"Profile", "Statistics", "Logout"};
+        } else {
+            menuItems = new String[]{"Profile", "Logout"};
+        }
+
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Menu")
+                .setItems(menuItems, (dialog, which) -> {
+                    if (userType.equals("staff")) {
+                        switch (which) {
+                            case 0: // Profile
+                                startActivity(new Intent(this, SettingsActivity.class));
+                                break;
+                            case 1: // Statistics
+                                startActivity(new Intent(this, StatisticsActivity.class));
+                                break;
+                            case 2: // Logout
+                                logout();
+                                break;
+                        }
+                    } else {
+                        switch (which) {
+                            case 0: // Profile
+                                startActivity(new Intent(this, SettingsActivity.class));
+                                break;
+                            case 1: // Logout
+                                logout();
+                                break;
+                        }
+                    }
+                })
+                .show();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        
-        if (itemId == R.id.action_logout) {
-            logout();
-            return true;
-        } else if (itemId == R.id.action_profile) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            return true;
-        } else if (itemId == R.id.action_statistics) {
-            Intent intent = new Intent(this, StatisticsActivity.class);
-            startActivity(intent);
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -94,6 +128,8 @@ public class DashboardActivity extends AppCompatActivity {
 
                 if (itemId == R.id.nav_menu) {
                     selectedFragment = new MenuFragment();
+                } else if (itemId == R.id.nav_tables) {
+                    selectedFragment = new TablesFragment();
                 } else if (itemId == R.id.nav_reservations) {
                     selectedFragment = new ReservationsFragment();
                 }

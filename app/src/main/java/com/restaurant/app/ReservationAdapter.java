@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     public interface OnItemClickListener {
         void onItemClick(Reservation reservation);
         void onCancelClick(Reservation reservation);
+        void onEditClick(Reservation reservation);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -60,7 +63,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         } else if ("Cancelled".equals(status)) {
             holder.textViewStatus.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.status_cancelled));
         } else {
-            holder.textViewStatus.setBackgroundColor(Color.GRAY); // Default color
+            holder.textViewStatus.setBackgroundColor(Color.GRAY);
         }
 
         holder.itemView.setOnClickListener(v -> {
@@ -68,6 +71,25 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                 listener.onItemClick(currentReservation);
             }
         });
+
+        // Show/hide action buttons based on role and status
+        if (isStaff || !"Cancelled".equals(status)) {
+            holder.actionButtons.setVisibility(View.VISIBLE);
+            
+            holder.imageViewEdit.setOnClickListener(v -> {
+                if (listener != null && !"Cancelled".equals(status)) {
+                    listener.onEditClick(currentReservation);
+                }
+            });
+
+            holder.imageViewCancel.setOnClickListener(v -> {
+                if (listener != null && !"Cancelled".equals(status)) {
+                    listener.onCancelClick(currentReservation);
+                }
+            });
+        } else {
+            holder.actionButtons.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -86,6 +108,9 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         private final TextView textViewDateTime;
         private final TextView textViewGuests;
         private final TextView textViewStatus;
+        private final LinearLayout actionButtons;
+        private final ImageView imageViewEdit;
+        private final ImageView imageViewCancel;
 
         public ReservationHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,6 +118,9 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             textViewDateTime = itemView.findViewById(R.id.textViewDateTime);
             textViewGuests = itemView.findViewById(R.id.textViewGuests);
             textViewStatus = itemView.findViewById(R.id.textViewStatus);
+            actionButtons = itemView.findViewById(R.id.actionButtons);
+            imageViewEdit = itemView.findViewById(R.id.imageViewEdit);
+            imageViewCancel = itemView.findViewById(R.id.imageViewCancel);
         }
     }
 }

@@ -21,6 +21,10 @@ public class MenuRepository {
         return allMenuItems;
     }
 
+    public LiveData<List<MenuItem>> getItemsNeedingRestock() {
+        return menuItemDao.getItemsNeedingRestock();
+    }
+
     public void insert(MenuItem menuItem) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             menuItemDao.insert(menuItem);

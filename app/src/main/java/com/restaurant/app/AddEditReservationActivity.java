@@ -25,12 +25,16 @@ public class AddEditReservationActivity extends AppCompatActivity {
     public static final String EXTRA_TIME = "com.restaurant.app.EXTRA_TIME";
     public static final String EXTRA_NUMBER_OF_GUESTS = "com.restaurant.app.EXTRA_NUMBER_OF_GUESTS";
     public static final String EXTRA_STATUS = "com.restaurant.app.EXTRA_STATUS";
+    public static final String EXTRA_NOTES = "com.restaurant.app.EXTRA_NOTES";
+    public static final String EXTRA_RESERVATION_TYPE = "com.restaurant.app.EXTRA_RESERVATION_TYPE";
 
     private EditText editTextCustomerName;
     private EditText editTextDate;
     private EditText editTextTime;
     private EditText editTextNumberOfGuests;
+    private EditText editTextNotes;
     private Spinner spinnerStatus;
+    private Spinner spinnerReservationType;
 
     private Calendar calendar;
 
@@ -43,7 +47,9 @@ public class AddEditReservationActivity extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         editTextTime = findViewById(R.id.editTextTime);
         editTextNumberOfGuests = findViewById(R.id.editTextNumberOfGuests);
+        editTextNotes = findViewById(R.id.editTextNotes);
         spinnerStatus = findViewById(R.id.spinnerStatus);
+        spinnerReservationType = findViewById(R.id.spinnerReservationType);
         Button buttonSaveReservation = findViewById(R.id.buttonSaveReservation);
 
         calendar = Calendar.getInstance();
@@ -53,6 +59,12 @@ public class AddEditReservationActivity extends AppCompatActivity {
                 R.array.reservation_statuses, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerStatus.setAdapter(adapter);
+
+        // Set up spinner for reservation type
+        ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this,
+                R.array.reservation_types, android.R.layout.simple_spinner_item);
+        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerReservationType.setAdapter(typeAdapter);
 
         // Date picker
         editTextDate.setOnClickListener(v -> {
@@ -90,16 +102,25 @@ public class AddEditReservationActivity extends AppCompatActivity {
             editTextDate.setText(intent.getStringExtra(EXTRA_DATE));
             editTextTime.setText(intent.getStringExtra(EXTRA_TIME));
             editTextNumberOfGuests.setText(String.valueOf(intent.getIntExtra(EXTRA_NUMBER_OF_GUESTS, 1)));
+            editTextNotes.setText(intent.getStringExtra(EXTRA_NOTES));
+            
             String currentStatus = intent.getStringExtra(EXTRA_STATUS);
             if (currentStatus != null) {
                 int spinnerPosition = adapter.getPosition(currentStatus);
                 spinnerStatus.setSelection(spinnerPosition);
+            }
+            
+            String currentType = intent.getStringExtra(EXTRA_RESERVATION_TYPE);
+            if (currentType != null) {
+                int typePosition = typeAdapter.getPosition(currentType);
+                spinnerReservationType.setSelection(typePosition);
             }
         } else {
             setTitle("Add Reservation");
             updateDateLabel(); // Set current date as default
             updateTimeLabel(); // Set current time as default
             spinnerStatus.setSelection(adapter.getPosition("Pending")); // Default status
+            spinnerReservationType.setSelection(typeAdapter.getPosition("Dinner")); // Default type
         }
 
         buttonSaveReservation.setOnClickListener(v -> saveReservation());
@@ -122,10 +143,12 @@ public class AddEditReservationActivity extends AppCompatActivity {
         String date = editTextDate.getText().toString().trim();
         String time = editTextTime.getText().toString().trim();
         String numberOfGuestsStr = editTextNumberOfGuests.getText().toString().trim();
+        String notes = editTextNotes.getText().toString().trim();
         String status = spinnerStatus.getSelectedItem().toString();
+        String reservationType = spinnerReservationType.getSelectedItem().toString();
 
         if (customerName.isEmpty() || date.isEmpty() || time.isEmpty() || numberOfGuestsStr.isEmpty()) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill all required fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -137,6 +160,8 @@ public class AddEditReservationActivity extends AppCompatActivity {
         data.putExtra(EXTRA_TIME, time);
         data.putExtra(EXTRA_NUMBER_OF_GUESTS, numberOfGuests);
         data.putExtra(EXTRA_STATUS, status);
+        data.putExtra(EXTRA_NOTES, notes);
+        data.putExtra(EXTRA_RESERVATION_TYPE, reservationType);
 
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
         if (id != -1) {

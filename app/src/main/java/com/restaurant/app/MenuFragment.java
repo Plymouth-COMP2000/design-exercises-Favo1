@@ -45,6 +45,15 @@ public class MenuFragment extends Fragment implements MenuAdapter.OnItemClickLis
         userType = prefs.getString("usertype", "guest");
 
         searchView = view.findViewById(R.id.searchViewMenu);
+        
+        // Set text color for search view
+        int searchTextId = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        android.widget.TextView searchText = searchView.findViewById(searchTextId);
+        if (searchText != null) {
+            searchText.setTextColor(getResources().getColor(R.color.text_primary_dark, null));
+            searchText.setHintTextColor(getResources().getColor(R.color.text_secondary_dark, null));
+        }
+        
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_menu);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -83,7 +92,13 @@ public class MenuFragment extends Fragment implements MenuAdapter.OnItemClickLis
                 startActivityForResult(intent, ADD_MENU_ITEM_REQUEST);
             });
         } else {
-            fab.setVisibility(View.GONE);
+            // Guest gets "Create Order" button
+            fab.setVisibility(View.VISIBLE);
+            fab.setImageResource(R.drawable.ic_add);
+            fab.setOnClickListener(v -> {
+                Intent intent = new Intent(getContext(), CreateOrderActivity.class);
+                startActivity(intent);
+            });
         }
 
         return view;
@@ -139,11 +154,15 @@ public class MenuFragment extends Fragment implements MenuAdapter.OnItemClickLis
             intent.putExtra(AddEditMenuItemActivity.EXTRA_IMAGE_PATH, menuItem.getImagePath());
             startActivityForResult(intent, EDIT_MENU_ITEM_REQUEST);
         } else {
-            // Guest can only view details
+            // Guest can view details or create order
             new AlertDialog.Builder(getContext())
                     .setTitle(menuItem.getName())
                     .setMessage("Price: $" + String.format("%.2f", menuItem.getPrice()))
-                    .setPositiveButton("OK", null)
+                    .setPositiveButton("Create Order", (dialog, which) -> {
+                        Intent intent = new Intent(getContext(), CreateOrderActivity.class);
+                        startActivity(intent);
+                    })
+                    .setNegativeButton("Close", null)
                     .show();
         }
     }
@@ -151,8 +170,57 @@ public class MenuFragment extends Fragment implements MenuAdapter.OnItemClickLis
     @Override
     public void onEditClick(MenuItem menuItem) {
         if (userType.equals("staff")) {
-            onItemClick(menuItem);
+            // Show options: Edit or Set Restock Reminder
+            new AlertDialog.Builder(getContext())
+                    .setTitle(menuItem.getName())
+                    .setItems(new String[]{"Edit Item", "Set Restock Reminder", "Mark as Restocked"}, (dialog, which) -> {
+                        switch (which) {
+                            case 0:
+                                // Edit item
+                                onItemClick(menuItem);
+                                break;
+                            case 1:
+                                // Set restock reminder
+                                showRestockDialog(menuItem);
+                                break;
+                            case 2:
+                                // Mark as restocked
+                                menuItem.setNeedsRestock(false);
+                                menuItem.setRestockNote("");
+                                menuViewModel.update(menuItem);
+                                Toast.makeText(getContext(), "Marked as restocked", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    })
+                    .show();
         }
+    }
+
+    private void showRestockDialog(MenuItem menuItem) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_restock, null);
+        builder.setView(dialogView);
+
+        android.widget.EditText etRestockNote = dialogView.findViewById(R.id.etRestockNote);
+        android.widget.EditText etStockQuantity = dialogView.findViewById(R.id.etStockQuantity);
+
+        etRestockNote.setText(menuItem.getRestockNote());
+        etStockQuantity.setText(String.valueOf(menuItem.getStockQuantity()));
+
+        builder.setTitle("Restock Reminder - " + menuItem.getName())
+                .setPositiveButton("Save", (dialog, which) -> {
+                    String note = etRestockNote.getText().toString();
+                    String qtyStr = etStockQuantity.getText().toString();
+                    int qty = qtyStr.isEmpty() ? 0 : Integer.parseInt(qtyStr);
+
+                    menuItem.setNeedsRestock(true);
+                    menuItem.setRestockNote(note);
+                    menuItem.setStockQuantity(qty);
+                    menuViewModel.update(menuItem);
+                    Toast.makeText(getContext(), "Restock reminder set", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     @Override

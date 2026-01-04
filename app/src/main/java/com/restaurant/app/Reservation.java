@@ -13,6 +13,8 @@ public class Reservation {
     private int numberOfGuests;
     private String status; // e.g., Confirmed, Pending, Cancelled
     private String createdBy; // Username of who created it
+    private String notes; // Special requests or notes
+    private String reservationType; // Birthday, Dinner, Custom
 
     public Reservation(String customerName, String date, String time, int numberOfGuests, String status) {
         this.customerName = customerName;
@@ -20,6 +22,8 @@ public class Reservation {
         this.time = time;
         this.numberOfGuests = numberOfGuests;
         this.status = status;
+        this.notes = "";
+        this.reservationType = "Dinner"; // Default type
     }
 
     public int getId() {
@@ -76,5 +80,21 @@ public class Reservation {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getReservationType() {
+        return reservationType;
+    }
+
+    public void setReservationType(String reservationType) {
+        this.reservationType = reservationType;
     }
 }

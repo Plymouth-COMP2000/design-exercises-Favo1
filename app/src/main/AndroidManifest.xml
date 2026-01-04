@@ -30,6 +30,7 @@
         <activity android:name="com.restaurant.app.AddEditReservationActivity" />
         <activity android:name="com.restaurant.app.SettingsActivity" />
         <activity android:name="com.restaurant.app.StatisticsActivity" />
+        <activity android:name="com.restaurant.app.CreateOrderActivity" />
 
     </application>
 

@@ -27,4 +27,7 @@ public interface MenuItemDao {
 
     @Query("SELECT * FROM menu_items WHERE id = :menuItemId")
     LiveData<MenuItem> getMenuItemById(int menuItemId);
+
+    @Query("SELECT * FROM menu_items WHERE needsRestock = 1 ORDER BY name ASC")
+    LiveData<List<MenuItem>> getItemsNeedingRestock();
 }

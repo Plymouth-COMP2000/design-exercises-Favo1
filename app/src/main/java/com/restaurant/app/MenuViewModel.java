@@ -22,6 +22,10 @@ public class MenuViewModel extends AndroidViewModel {
         return allMenuItems;
     }
 
+    public LiveData<List<MenuItem>> getItemsNeedingRestock() {
+        return repository.getItemsNeedingRestock();
+    }
+
     public void insert(MenuItem menuItem) {
         repository.insert(menuItem);
     }

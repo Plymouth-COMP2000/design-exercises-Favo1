@@ -47,6 +47,15 @@ public class ReservationsFragment extends Fragment implements ReservationAdapter
         currentUsername = prefs.getString("username", "");
 
         searchView = view.findViewById(R.id.searchViewReservations);
+        
+        // Set text color for search view
+        int searchTextId = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        android.widget.TextView searchText = searchView.findViewById(searchTextId);
+        if (searchText != null) {
+            searchText.setTextColor(getResources().getColor(R.color.text_primary_dark, null));
+            searchText.setHintTextColor(getResources().getColor(R.color.text_secondary_dark, null));
+        }
+        
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_reservations);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -112,10 +121,14 @@ public class ReservationsFragment extends Fragment implements ReservationAdapter
             String time = data.getStringExtra(AddEditReservationActivity.EXTRA_TIME);
             int guests = data.getIntExtra(AddEditReservationActivity.EXTRA_NUMBER_OF_GUESTS, 1);
             String status = data.getStringExtra(AddEditReservationActivity.EXTRA_STATUS);
+            String notes = data.getStringExtra(AddEditReservationActivity.EXTRA_NOTES);
+            String reservationType = data.getStringExtra(AddEditReservationActivity.EXTRA_RESERVATION_TYPE);
 
             if (requestCode == ADD_RESERVATION_REQUEST) {
                 Reservation reservation = new Reservation(customerName, date, time, guests, status);
                 reservation.setCreatedBy(currentUsername);
+                reservation.setNotes(notes != null ? notes : "");
+                reservation.setReservationType(reservationType != null ? reservationType : "Dinner");
                 reservationViewModel.insert(reservation);
                 Toast.makeText(getContext(), "Reservation added", Toast.LENGTH_SHORT).show();
             } else if (requestCode == EDIT_RESERVATION_REQUEST) {
@@ -127,6 +140,8 @@ public class ReservationsFragment extends Fragment implements ReservationAdapter
                 Reservation reservation = new Reservation(customerName, date, time, guests, status);
                 reservation.setId(id);
                 reservation.setCreatedBy(currentUsername);
+                reservation.setNotes(notes != null ? notes : "");
+                reservation.setReservationType(reservationType != null ? reservationType : "Dinner");
                 reservationViewModel.update(reservation);
                 Toast.makeText(getContext(), "Reservation updated", Toast.LENGTH_SHORT).show();
             }
@@ -136,13 +151,20 @@ public class ReservationsFragment extends Fragment implements ReservationAdapter
     @Override
     public void onItemClick(Reservation reservation) {
         // Show reservation details
+        String notesDisplay = (reservation.getNotes() != null && !reservation.getNotes().isEmpty()) 
+            ? "\nNotes: " + reservation.getNotes() 
+            : "";
+        
+        String reservationType = reservation.getReservationType() != null ? reservation.getReservationType() : "Dinner";
+        
         new AlertDialog.Builder(getContext())
                 .setTitle("Reservation Details")
                 .setMessage("Customer: " + reservation.getCustomerName() + "\n" +
                         "Date: " + reservation.getDate() + "\n" +
                         "Time: " + reservation.getTime() + "\n" +
                         "Guests: " + reservation.getNumberOfGuests() + "\n" +
-                        "Status: " + reservation.getStatus())
+                        "Type: " + reservationType + "\n" +
+                        "Status: " + reservation.getStatus() + notesDisplay)
                 .setPositiveButton("OK", null)
                 .show();
     }
@@ -160,6 +182,20 @@ public class ReservationsFragment extends Fragment implements ReservationAdapter
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    @Override
+    public void onEditClick(Reservation reservation) {
+        Intent intent = new Intent(getContext(), AddEditReservationActivity.class);
+        intent.putExtra(AddEditReservationActivity.EXTRA_ID, reservation.getId());
+        intent.putExtra(AddEditReservationActivity.EXTRA_CUSTOMER_NAME, reservation.getCustomerName());
+        intent.putExtra(AddEditReservationActivity.EXTRA_DATE, reservation.getDate());
+        intent.putExtra(AddEditReservationActivity.EXTRA_TIME, reservation.getTime());
+        intent.putExtra(AddEditReservationActivity.EXTRA_NUMBER_OF_GUESTS, reservation.getNumberOfGuests());
+        intent.putExtra(AddEditReservationActivity.EXTRA_STATUS, reservation.getStatus());
+        intent.putExtra(AddEditReservationActivity.EXTRA_NOTES, reservation.getNotes());
+        intent.putExtra(AddEditReservationActivity.EXTRA_RESERVATION_TYPE, reservation.getReservationType());
+        startActivityForResult(intent, EDIT_RESERVATION_REQUEST);
     }
 
     private void onClick(View v) {

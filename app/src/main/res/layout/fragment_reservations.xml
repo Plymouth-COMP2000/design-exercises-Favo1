@@ -17,7 +17,9 @@
             android:layout_margin="8dp"
             android:background="@drawable/bg_edit_text"
             android:queryHint="Search reservations..."
-            android:iconifiedByDefault="false" />
+            android:iconifiedByDefault="false"
+            android:queryBackground="@android:color/transparent"
+            style="@style/SearchViewStyle" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_reservations"
