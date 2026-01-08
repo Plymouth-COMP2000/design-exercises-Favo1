@@ -16,7 +16,6 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView tvUsername;
     private TextView tvEmail;
     private TextView tvUserType;
-    private String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
         String username = prefs.getString("username", "User");
         String email = prefs.getString("email", "");
-        userType = prefs.getString("usertype", "guest");
+        String userType = prefs.getString("usertype", "guest");
 
         tvUsername.setText(username);
         tvEmail.setText(email);

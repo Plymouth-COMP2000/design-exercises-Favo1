@@ -21,6 +21,7 @@ import com.restaurant.app.api.User;
 import com.restaurant.app.api.UserListResponse;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         // Login button click listener
         btnLogin.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
-            String password = etPassword.getText().toString().trim();
+            String password = Objects.requireNonNull(etPassword.getText()).toString().trim();
 
             if (validateInput(email, password)) {
                 authenticateUser(email, password);

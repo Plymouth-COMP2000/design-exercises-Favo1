@@ -20,7 +20,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuItemHolder
 
     private List<MenuItem> menuItems;
     private OnItemClickListener listener;
-    private boolean isStaff;
+    private final boolean isStaff;
 
     public MenuAdapter(List<MenuItem> menuItems, boolean isStaff) {
         this.menuItems = menuItems;

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,11 +33,11 @@ public class ReservationsFragment extends Fragment implements ReservationAdapter
     private String userType;
     private String currentUsername;
     private List<Reservation> allReservations = new ArrayList<>();
-    private SearchView searchView;
 
     public static final int ADD_RESERVATION_REQUEST = 1;
     public static final int EDIT_RESERVATION_REQUEST = 2;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class ReservationsFragment extends Fragment implements ReservationAdapter
         userType = prefs.getString("usertype", "guest");
         currentUsername = prefs.getString("username", "");
 
-        searchView = view.findViewById(R.id.searchViewReservations);
+        SearchView searchView = view.findViewById(R.id.searchViewReservations);
         
         // Set text color for search view
         int searchTextId = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
@@ -98,6 +100,7 @@ public class ReservationsFragment extends Fragment implements ReservationAdapter
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void filterReservations(String query) {
         if (query.isEmpty()) {
             reservationAdapter.setReservations(allReservations);

@@ -34,9 +34,6 @@ android {
     }
 }
 
-// FIX: Exclude the problematic com.intellij:annotations dependency globally for this module.
-// This prevents duplicate class errors when multiple libraries (or internal Android tools)
-// bring in the same annotation classes, particularly older versions.
 configurations.all {
     exclude(group = "com.intellij", module = "annotations")
 }
