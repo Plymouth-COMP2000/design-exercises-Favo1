@@ -1,0 +1,26 @@
+Login with the pre-registered users 
+
+Staff - 
+	Userame: test@example.com Test123
+	Email
+
+Staff 1:
+
+     Username: testuser
+     Email:    test@example.com
+     Password:        test123
+     User Type:       staff
+
+Staff User 2:
+
+     Username:  admin_user
+     Email:     admin@restaurant.com
+     Password:  admin123
+     Type:      staff
+
+Guest User:
+
+     Username:  guest1
+     Email:     guest@example.com
+     Password:  guest123
+     Type:      guest
